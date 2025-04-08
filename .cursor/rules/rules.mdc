@@ -1,0 +1,57 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+
+# Technical & Design Rules for BrandSip Website
+
+# 1. Tech Stack
+
+# Frontend
+- **Framework:** Next.js – for fast, SEO-friendly performance.
+- **Styling:** TailwindCSS – for rapid, consistent styling.
+- **Animations:** Framer Motion – for smooth microinteractions and page transitions.
+
+# Backend (Optional for Lead Management and CMS)
+- **Database & Hosting:** Firebase or Supabase – for lightweight backend solutions.
+- **Form Handling:** Nodemailer (or similar) – for handling email submissions.
+- **CMS (Optional):** Sanity.io or Contentful – to allow non-developer content updates (e.g., testimonials, blog posts, images).
+
+# SEO & Analytics
+- **SEO:** Optimized headings (H1-H3), ALT tags, schema markup (local business), sitemap, and robots.txt.
+- **Analytics:** Google Analytics v4, Hotjar or Microsoft Clarity for tracking user behavior.
+
+# 2. Color Palette
+
+| Purpose             | Color Name      | Hex Code   |
+|---------------------|-----------------|------------|
+| Primary             | Deep Blue       | `#0D3B66`  |
+| Accent              | Aqua Blue       | `#00B4D8`  |
+| Luxury Highlight    | Champagne Gold  | `#D4AF37`  |
+| Neutral Background  | Light Grey      | `#F8F9FA`  |
+| Base / Cleanliness  | White           | `#FFFFFF`  |
+
+# 3. Typography
+
+| Use            | Font                     | Style Notes                                |
+|----------------|--------------------------|--------------------------------------------|
+| Headings       | Playfair Display         | Elegant serif font for a premium feel.     |
+| Body Text      | Inter or Lato            | Clean, modern sans-serif for readability.  |
+| Call-to-Action | Montserrat Medium        | Bold and modern for clear callouts.        |
+
+# 4. Imagery & Visual Style
+
+- **Imagery Style:** 
+  - Use high-resolution lifestyle images featuring custom-branded water bottles in premium hospitality settings (hotels, bars, restaurants, heritage properties).
+  - Include close-ups of bottle labels and behind-the-scenes production shots.
+- **Visual Elements:**
+  - Use soft shadows, depth effects, and water ripple textures to evoke freshness and luxury.
+  - Maintain a minimalist yet refined aesthetic with generous white space.
+
+# 5. Additional Technical Considerations
+
+- **Mobile Responsiveness:** Design mobile-first layouts ensuring fast load times and optimized performance on all devices.
+- **Loading Techniques:** Implement lazy-loading for images and components to improve speed.
+- **Security:** Ensure form submissions are secure using HTTPS and proper data validation.
+- **Future Scalability:** Build components in a modular fashion to allow for future integration of features like a client portal or drag-and-drop label designer.

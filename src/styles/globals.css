@@ -1,0 +1,132 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-playfair;
+  }
+
+  h1 {
+    @apply text-4xl md:text-5xl xl:text-6xl font-bold;
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl xl:text-5xl font-semibold;
+  }
+
+  h3 {
+    @apply text-2xl md:text-3xl font-semibold;
+  }
+
+  p {
+    @apply text-base md:text-lg text-gray-700 dark:text-dark-secondary leading-relaxed;
+  }
+
+  /* Base transitions for theme switching */
+  body,
+  div,
+  header,
+  footer,
+  main,
+  section,
+  article,
+  button,
+  a,
+  p,
+  span,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply transition-colors duration-300;
+  }
+
+  /* Dark mode overrides */
+  .dark body {
+    @apply bg-dark text-dark-primary;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-primary text-white font-montserrat font-medium py-3 px-6 rounded-lg transition-all hover:shadow-lg hover:translate-y-[-2px] dark:bg-primary/90 dark:hover:bg-primary;
+  }
+
+  .btn-accent {
+    @apply bg-accent text-white font-montserrat font-medium py-3 px-6 rounded-lg transition-all hover:shadow-lg hover:translate-y-[-2px] dark:bg-accent/90 dark:hover:bg-accent;
+  }
+
+  .btn-gold {
+    @apply bg-gold text-white font-montserrat font-medium py-3 px-6 rounded-lg transition-all hover:shadow-lg hover:translate-y-[-2px] dark:bg-gold/90 dark:hover:bg-gold;
+  }
+
+  .btn-outline {
+    @apply border-2 border-primary text-primary font-montserrat font-medium py-3 px-6 rounded-lg transition-all hover:bg-primary hover:text-white dark:border-accent dark:text-accent dark:hover:bg-accent;
+  }
+
+  .btn-outline-primary {
+    @apply border-2 border-primary text-primary font-montserrat font-medium py-3 px-6 rounded-lg transition-all hover:bg-primary hover:text-white dark:border-primary/80 dark:text-primary/80 dark:hover:bg-primary/80 dark:hover:text-white;
+  }
+
+  .section {
+    @apply py-12 md:py-20 px-4 md:px-8 lg:px-12 dark:bg-dark;
+  }
+
+  .container-wide {
+    @apply max-w-7xl mx-auto;
+  }
+
+  /* Theme toggle button */
+  .theme-toggle-btn {
+    @apply rounded-full w-12 h-6 flex items-center p-1 bg-gray-300 dark:bg-gray-700 transition-all duration-300 cursor-pointer;
+  }
+
+  .theme-toggle-thumb {
+    @apply rounded-full w-4 h-4 bg-white shadow-md transform transition-transform duration-300;
+  }
+
+  .theme-toggle-icon {
+    @apply absolute flex items-center justify-center;
+  }
+}
+
+/* Dark mode style overrides */
+.dark .bg-white {
+  @apply bg-dark-card;
+}
+
+.dark .bg-light-gray {
+  @apply bg-dark-header;
+}
+
+.dark .bg-primary {
+  @apply bg-primary/90;
+}
+
+.dark .text-primary {
+  @apply text-accent;
+}
+
+.dark .text-gray-700,
+.dark .text-gray-600,
+.dark .text-gray-500 {
+  @apply text-dark-muted;
+}
+
+.dark .shadow-sm,
+.dark .shadow-md,
+.dark .shadow-lg {
+  @apply shadow-none;
+}
+
+.dark .border-gray-300 {
+  @apply border-dark-border;
+}
