@@ -13,7 +13,11 @@ const nextConfig = {
         hostname: "source.unsplash.com",
       },
     ],
+    unoptimized: true,
   },
+  output: "export",
+  basePath: process.env.NODE_ENV === "production" ? "/brandsip" : "",
+  assetPrefix: process.env.NODE_ENV === "production" ? "/brandsip/" : "",
 };
 
 module.exports = nextConfig;
