@@ -17,6 +17,8 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      NODE_ENV: production
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -27,23 +29,17 @@ jobs:
           node-version: "20"
           cache: "npm"
 
-      - name: Install dependencies (with lock file regeneration)
+      - name: Install dependencies
         run: npm install
 
-      - name: Create output directory if it doesn't exist
-        run: mkdir -p ./out
+      - name: Build Next.js static output
+        run: npm run build
 
       - name: Create .nojekyll file
-        run: touch ./out/.nojekyll
+        run: touch out/.nojekyll
 
-      - name: Build
-        run: npm run build
-        env:
-          NODE_ENV: production
-          NEXT_PUBLIC_BASE_PATH: /brandsip
-
-      - name: Create .nojekyll file (ensure it exists after build)
-        run: touch ./out/.nojekyll
+      - name: List output directory
+        run: ls -la out/
 
       - name: Setup Pages
         uses: actions/configure-pages@v4

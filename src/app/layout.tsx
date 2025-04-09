@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "../styles/globals.css";
-import { getBasePath } from "../utils/path-utils";
 import Script from "next/script";
 
 export const metadata: Metadata = {
@@ -16,8 +15,6 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const basePath = getBasePath();
-
   return (
     <html lang="en">
       <head>
@@ -31,40 +28,49 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lato:wght@400;700&family=Montserrat:wght@500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
           rel="stylesheet"
         />
+        {/* Debug script for detecting paths on GitHub Pages */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
-              // Determine base path reliably
-              let basePath = '';
+              console.log('Current URL:', window.location.href);
+              console.log('Pathname:', window.location.pathname);
+              console.log('Hostname:', window.location.hostname);
+              
+              // Check if navigation needs to be fixed for GitHub Pages
               if (window.location.hostname.includes('github.io')) {
-                basePath = '/brandsip';
+                console.log('Running on GitHub Pages');
               }
-              
-              window.process = {
-                env: {
-                  NEXT_PUBLIC_BASE_PATH: basePath
-                }
-              };
-              
-              // Store the URL if it's a 404 redirect
-              if (window.location.search && window.location.search.includes('p=')) {
-                sessionStorage.redirect = window.location.href;
-              }
-              
-              // Debug info to console
-              console.log('Base path:', basePath);
-              console.log('Current path:', window.location.pathname);
             `,
           }}
         />
       </head>
       <body className="font-inter text-primary bg-white">
         {children}
-        <Script src={`${basePath}/debug.js`} strategy="afterInteractive" />
-        <Script
-          src={`${basePath}/index-redirect.js`}
-          strategy="beforeInteractive"
-        />
+        {/* Add a simple troubleshooting element */}
+        <div
+          id="debug-info"
+          style={{
+            display: "none",
+            position: "fixed",
+            bottom: "10px",
+            right: "10px",
+            background: "white",
+            padding: "10px",
+            border: "1px solid black",
+            zIndex: 9999,
+          }}
+        >
+          <p>Debug Info</p>
+          <p id="path-info"></p>
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+            document.getElementById('debug-info').style.display = 'block';
+            document.getElementById('path-info').innerText = 'Path: ' + window.location.pathname;
+          `,
+            }}
+          />
+        </div>
       </body>
     </html>
   );

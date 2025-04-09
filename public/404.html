@@ -5,30 +5,60 @@
     <meta charset="utf-8">
     <title>Page Not Found - BrandSip</title>
     <script>
-        // Single Page Apps for GitHub Pages
-        // MIT License
-        // This script takes the current URL and converts the path and query
-        // parameters into a route that the single page app expects
-        (function () {
-            var segmentCount = 1; // Adjust this to match your repo name depth
-            var basePath = "/brandsip"; // Must match your repo name
-
-            var l = window.location;
-
-            // Handle 404s by redirecting to the index.html with the right path
-            l.replace(
-                l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
-                basePath + '/?p=' + l.pathname.slice(basePath.length) +
-                (l.search ? '&q=' + l.search.slice(1) : '') +
-                l.hash
-            );
-        })();
+        // Simple redirect to the main page for GitHub Pages
+        window.location.href = "/brandsip/";
     </script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+            background-color: #f7f7f7;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #0070f3;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.2s;
+        }
+
+        a:hover {
+            background-color: #0051b3;
+        }
+    </style>
 </head>
 
 <body>
-    <h1>Page Not Found</h1>
-    <p>Redirecting you to the home page...</p>
+    <div class="container">
+        <h1>Page Not Found</h1>
+        <p>The page you are looking for doesn't exist or has been moved.</p>
+        <p>Redirecting you to the home page...</p>
+        <a href="/brandsip/">Go to Home Page</a>
+    </div>
 </body>
 
 </html>

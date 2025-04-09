@@ -1,11 +1,14 @@
 /** @type {import('next').NextConfig} */
+const isGithubPages = process.env.NODE_ENV === "production";
+const repoName = "brandsip"; // GitHub repository name
+
 const nextConfig = {
   output: "export",
   // GitHub Pages specific configuration
-  basePath: process.env.NEXT_PUBLIC_BASE_PATH || "",
-  assetPrefix: process.env.NEXT_PUBLIC_BASE_PATH
-    ? `${process.env.NEXT_PUBLIC_BASE_PATH}/`
-    : "",
+  basePath: isGithubPages ? `/${repoName}` : "",
+  assetPrefix: isGithubPages ? `/${repoName}/` : "",
+  // Enable trailing slash for GitHub Pages compatibility
+  trailingSlash: true,
   // Images configuration - required for static export
   images: {
     unoptimized: true,
@@ -20,17 +23,12 @@ const nextConfig = {
       },
     ],
     formats: ["image/avif", "image/webp"],
-    // Make images work with static export
-    loader: "custom",
-    loaderFile: "./src/utils/image-loader.js",
+    // For static export, we need to use static loader
+    loader: "imgix",
+    path: "",
   },
-  // Disable trailing slashes for better compatibility
-  trailingSlash: false,
-  // Ensure experimental static export
-  experimental: {
-    // Helps with static exports
-    appDocumentPreloading: true,
-  },
+  // Remove experimental features that might be causing issues
+  experimental: {},
 };
 
 module.exports = nextConfig;
