@@ -1,9 +1,12 @@
 /** @type {import('next').NextConfig} */
-const isGithubPages = process.env.NODE_ENV === "production";
+const isGithubPages =
+  process.env.GITHUB_PAGES === "true" || process.env.NODE_ENV === "production";
 const repoName = "BrandSip"; // GitHub repository name
 
 const nextConfig = {
   output: "export",
+  // Specify output directory
+  distDir: "out",
   // GitHub Pages specific configuration
   basePath: isGithubPages ? `/${repoName}` : "",
   assetPrefix: isGithubPages ? `/${repoName}/` : "",
@@ -24,8 +27,8 @@ const nextConfig = {
     ],
     formats: ["image/avif", "image/webp"],
     // For static export, we need to use static loader
-    loader: "imgix",
-    path: "",
+    loader: "custom",
+    loaderFile: "./src/utils/imageLoader.js",
   },
   // Remove experimental features that might be causing issues
   experimental: {},

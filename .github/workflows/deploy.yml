@@ -151,6 +151,14 @@ jobs:
       - name: Create .nojekyll file
         run: touch out/.nojekyll
 
+      - name: Ensure images directory exists in output
+        run: |
+          mkdir -p out/images
+          echo "Copying images from public to out directory..."
+          cp -r public/images/* out/images/
+          echo "Image directory contents:"
+          ls -la out/images/
+
       - name: List output directory
         run: ls -la out/
 

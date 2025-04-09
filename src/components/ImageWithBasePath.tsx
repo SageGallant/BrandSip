@@ -19,6 +19,18 @@ const ImageWithBasePath = (props: ImageProps & { src: string }) => {
       return src;
     }
 
+    // Normalize path to avoid case sensitivity issues
+    if (isGitHub && src.toLowerCase().includes("images/")) {
+      const basePath = "/BrandSip";
+      // Extract the filename from the path (everything after 'images/')
+      const pathParts = src.split("images/");
+      if (pathParts.length > 1) {
+        const filename = pathParts[1];
+        // Construct path with normalized 'images' folder name (always lowercase)
+        return `${basePath}/images/${filename}`;
+      }
+    }
+
     // For local images on GitHub Pages
     if (isGitHub && src.startsWith("/") && !src.startsWith("/BrandSip")) {
       return `/BrandSip${src}`;
@@ -71,8 +83,18 @@ const ImageWithBasePath = (props: ImageProps & { src: string }) => {
       // Try with /BrandSip prefix if it's not already there
       setImageSrc(`/BrandSip${imageSrc}`);
     } else if (isGitHubPages && imageSrc.includes("/BrandSip")) {
-      // Try without /BrandSip prefix if it's already there
-      setImageSrc(imageSrc.replace("/BrandSip", ""));
+      // Try alternative path format for GitHub Pages
+      // Adjust the path to use lowercase 'images' directory
+      if (imageSrc.toLowerCase().includes("images/")) {
+        const pathParts = imageSrc.toLowerCase().split("images/");
+        if (pathParts.length > 1) {
+          const filename = pathParts[1];
+          setImageSrc(`/BrandSip/images/${filename}`);
+        }
+      } else {
+        // Try without BrandSip prefix if that fails
+        setImageSrc(imageSrc.replace("/BrandSip", ""));
+      }
     }
   };
 

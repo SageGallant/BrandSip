@@ -9,21 +9,21 @@ import ImageWithBasePath from "../../components/ImageWithBasePath";
 // Product image data for easier maintenance
 const productImages = [
   {
-    src: "/images/Hotel.png",
+    src: "/images/hotel.png",
     alt: "Luxury Hotel Design",
     title: "Luxury Hotel Design",
     description:
       "Elegant, minimalist design perfect for premium hotels and resorts.",
   },
   {
-    src: "/images/Dining.png",
+    src: "/images/dining.png",
     alt: "Fine Dining Edition",
     title: "Fine Dining Edition",
     description:
       "Sophisticated design that complements your restaurant's aesthetic.",
   },
   {
-    src: "/images/Heritage.png",
+    src: "/images/heritage.png",
     alt: "Heritage Collection",
     title: "Heritage Collection",
     description:
@@ -36,13 +36,13 @@ const productImages = [
     description: "Sleek, modern designs perfect for upscale bars and lounges.",
   },
   {
-    src: "/images/Cafe.png",
+    src: "/images/cafe.png",
     alt: "Café Collection",
     title: "Café Collection",
     description: "Vibrant, eye-catching designs for cafés and casual dining.",
   },
   {
-    src: "/images/Custom.png",
+    src: "/images/custom.png",
     alt: "Custom Creation",
     title: "Custom Creation",
     description:
