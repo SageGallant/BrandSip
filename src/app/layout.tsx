@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "../styles/globals.css";
 import { getBasePath } from "../utils/path-utils";
+import Script from "next/script";
 
 export const metadata: Metadata = {
   title: "BrandSip - Custom Branded Water Bottles for Hospitality",
@@ -38,11 +39,22 @@ export default function RootLayout({
                   NEXT_PUBLIC_BASE_PATH: "${basePath}"
                 }
               };
+              
+              // Store the URL if it's a 404 redirect
+              if (window.location.search && window.location.search.includes('p=')) {
+                sessionStorage.redirect = window.location.href;
+              }
             `,
           }}
         />
       </head>
-      <body className="font-inter text-primary bg-white">{children}</body>
+      <body className="font-inter text-primary bg-white">
+        {children}
+        <Script
+          src={`${basePath}/index-redirect.js`}
+          strategy="beforeInteractive"
+        />
+      </body>
     </html>
   );
 }

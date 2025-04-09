@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Page Not Found - BrandSip</title>
+    <script>
+        // Single Page Apps for GitHub Pages
+        // MIT License
+        // This script takes the current URL and converts the path and query
+        // parameters into a route that the single page app expects
+        (function () {
+            var segmentCount = 1; // Adjust this to match your repo name depth
+            var basePath = "/brandsip"; // Must match your repo name
+
+            var l = window.location;
+
+            // Handle 404s by redirecting to the index.html with the right path
+            l.replace(
+                l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+                basePath + '/?p=' + l.pathname.slice(basePath.length) +
+                (l.search ? '&q=' + l.search.slice(1) : '') +
+                l.hash
+            );
+        })();
+    </script>
+</head>
+
+<body>
+    <h1>Page Not Found</h1>
+    <p>Redirecting you to the home page...</p>
+</body>
+
+</html>

@@ -31,6 +31,21 @@ const nextConfig = {
     // Helps with static exports
     appDocumentPreloading: true,
   },
+  // Provide specific export configuration
+  exportPathMap: async function (
+    defaultPathMap,
+    { dev, dir, outDir, distDir, buildId }
+  ) {
+    return {
+      "/": { page: "/" },
+      "/contact": { page: "/contact" },
+      "/investors": { page: "/investors" },
+      "/vision": { page: "/vision" },
+      "/industries": { page: "/industries" },
+      "/products": { page: "/products" },
+      "/404": { page: "/404" },
+    };
+  },
 };
 
 module.exports = nextConfig;
