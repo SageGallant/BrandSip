@@ -39,10 +39,10 @@ const ImageWithBasePath = (props: ImageWithBasePathProps) => {
       if (src.toLowerCase().includes("images/")) {
         // Extract the filename part (after the last /)
         const pathParts = src.split("/");
-        const fileName = pathParts[pathParts.length - 1];
+        const fileName = pathParts[pathParts.length - 1].toLowerCase(); // Force lowercase for case-sensitive systems
 
         // For images folder path, ensure 'images' is all lowercase
-        // but preserve the exact case of the filename
+        // and ensure the filename is lowercase for case-sensitive systems
         return `${basePath}/images/${fileName}`;
       }
 
@@ -85,20 +85,14 @@ const ImageWithBasePath = (props: ImageWithBasePathProps) => {
         }
         break;
       case 3:
-        // Try with alternative casing for the 'images' part of the path
+        // Try with all lowercase path for the 'images' part
         if (originalSrc.toLowerCase().includes("images/")) {
-          // Extract parts to maintain the original filename case
+          // Extract filename only and force lowercase
           const parts = originalSrc.split("/");
-          const imagesIndex = parts.findIndex(
-            (part) => part.toLowerCase() === "images"
-          );
-
-          if (imagesIndex >= 0) {
-            parts[imagesIndex] = "images"; // Use lowercase 'images'
-            return isGitHub
-              ? `${basePath}/${parts.filter(Boolean).join("/")}`
-              : `/${parts.filter(Boolean).join("/")}`;
-          }
+          const filename = parts[parts.length - 1].toLowerCase();
+          return isGitHub
+            ? `${basePath}/images/${filename}`
+            : `/images/${filename}`;
         }
         break;
       default:
@@ -119,7 +113,8 @@ const ImageWithBasePath = (props: ImageWithBasePathProps) => {
     const isGitHub =
       typeof window !== "undefined" &&
       (window.location.hostname.includes("github.io") ||
-        window.location.hostname.includes("brandspecial.github.io"));
+        window.location.hostname.includes("brandspecial.github.io") ||
+        window.location.hostname.includes("sagegallant.github.io"));
     setIsGitHubPages(isGitHub);
 
     // Update image source with correct path

@@ -28,7 +28,7 @@ const nextConfig = {
     formats: ["image/avif", "image/webp"],
     // For static export, we need to use static loader
     loader: "custom",
-    loaderFile: "./src/utils/imageLoader.js",
+    loaderFile: "./src/utils/image-loader.js",
   },
   // Remove experimental features that might be causing issues
   experimental: {},
