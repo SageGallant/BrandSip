@@ -4,7 +4,7 @@ export function getBasePath() {
   if (typeof window !== "undefined") {
     // For GitHub Pages deployment
     if (window.location.hostname.includes("github.io")) {
-      return "/brandsip";
+      return "/BrandSip";
     }
   }
   return process.env.NEXT_PUBLIC_BASE_PATH || "";
@@ -16,6 +16,17 @@ export function withBasePath(path) {
   // Don't add the base path for absolute URLs
   if (path.startsWith("http://") || path.startsWith("https://")) {
     return path;
+  }
+
+  // Special handling for image files - extract just the filename
+  if (
+    path.includes("/images/") ||
+    path.startsWith("/images/") ||
+    path.startsWith("images/")
+  ) {
+    const fileName = path.split("/").pop();
+    // Construct a direct path to the image in the images directory
+    return `${basePath}/images/${fileName}`;
   }
 
   // Ensure we don't double-prefix

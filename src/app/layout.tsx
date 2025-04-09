@@ -47,7 +47,7 @@ export default function RootLayout({
             console.log('Hostname:', window.location.hostname);
             
             // Check if navigation needs to be fixed for GitHub Pages
-            if (window.location.hostname.includes('github.io')) {
+            if (window.location.hostname.includes('github.io') || window.location.hostname.includes('sagegallant.github.io')) {
               console.log('Running on GitHub Pages');
               
               // Fix paths for favicon and other static assets

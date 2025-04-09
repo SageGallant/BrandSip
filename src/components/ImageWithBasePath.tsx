@@ -27,28 +27,18 @@ const ImageWithBasePath = (props: ImageWithBasePathProps) => {
 
     // For GitHub Pages deployment
     if (isGitHub) {
-      // Extract the base path (e.g., /images/) and filename parts
       const basePath = "/BrandSip";
 
-      // Check if path already has the repo name
+      // If the path already has the repo name, don't add it again
       if (src.startsWith(basePath)) {
-        return src; // Already has correct base path
+        return src;
       }
 
-      // Special handling for images directory paths to handle case sensitivity
-      if (src.toLowerCase().includes("images/")) {
-        // Extract the filename part (after the last /)
-        const pathParts = src.split("/");
-        const fileName = pathParts[pathParts.length - 1].toLowerCase(); // Force lowercase for case-sensitive systems
+      // Ensure path has a leading slash
+      const normalizedSrc = src.startsWith("/") ? src : `/${src}`;
 
-        // For images folder path, ensure 'images' is all lowercase
-        // and ensure the filename is lowercase for case-sensitive systems
-        return `${basePath}/images/${fileName}`;
-      }
-
-      // Keep the original case of the filename for case-sensitive file systems
-      // Just add the basePath prefix
-      return `${basePath}${src.startsWith("/") ? src : `/${src}`}`;
+      // Simply add the basePath for GitHub Pages
+      return `${basePath}${normalizedSrc}`;
     }
 
     // For local development
@@ -71,28 +61,36 @@ const ImageWithBasePath = (props: ImageWithBasePathProps) => {
     // Create up to 3 different fallback options
     switch (attempt) {
       case 1:
-        // Try with repository name prefix if it's missing
-        if (isGitHub && !originalSrc.startsWith(basePath)) {
-          return `${basePath}${
-            originalSrc.startsWith("/") ? originalSrc : `/${originalSrc}`
-          }`;
+        // Always try with repository name and direct path to /images/
+        if (isGitHub) {
+          // Extract the filename
+          const filename = originalSrc.split("/").pop();
+          if (filename) {
+            return `${basePath}/images/${filename}`;
+          }
         }
         break;
       case 2:
-        // Try without repository name prefix if it has one
-        if (isGitHub && originalSrc.startsWith(basePath)) {
-          return originalSrc.substring(basePath.length);
+        // Try with repository name but keeping the original path structure
+        if (isGitHub) {
+          // Make sure we're not duplicating the basePath
+          if (originalSrc.startsWith(basePath)) {
+            return originalSrc;
+          } else {
+            const normalizedSrc = originalSrc.startsWith("/")
+              ? originalSrc
+              : `/${originalSrc}`;
+            return `${basePath}${normalizedSrc}`;
+          }
         }
         break;
       case 3:
-        // Try with all lowercase path for the 'images' part
-        if (originalSrc.toLowerCase().includes("images/")) {
-          // Extract filename only and force lowercase
-          const parts = originalSrc.split("/");
-          const filename = parts[parts.length - 1].toLowerCase();
-          return isGitHub
-            ? `${basePath}/images/${filename}`
-            : `/images/${filename}`;
+        // Try with just the filename - sometimes GitHub Pages has issues with deeper paths
+        if (isGitHub) {
+          const filename = originalSrc.split("/").pop();
+          if (filename) {
+            return `/images/${filename}`;
+          }
         }
         break;
       default:
@@ -113,7 +111,6 @@ const ImageWithBasePath = (props: ImageWithBasePathProps) => {
     const isGitHub =
       typeof window !== "undefined" &&
       (window.location.hostname.includes("github.io") ||
-        window.location.hostname.includes("brandspecial.github.io") ||
         window.location.hostname.includes("sagegallant.github.io"));
     setIsGitHubPages(isGitHub);
 

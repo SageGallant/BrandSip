@@ -6,7 +6,9 @@
   console.log("Pathname:", window.location.pathname);
 
   // Check if we're on GitHub Pages
-  const isGitHubPages = window.location.hostname.includes("github.io");
+  const isGitHubPages =
+    window.location.hostname.includes("github.io") ||
+    window.location.hostname.includes("sagegallant.github.io");
   console.log("Is GitHub Pages:", isGitHubPages);
 
   // Log all script elements

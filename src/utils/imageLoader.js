@@ -13,7 +13,6 @@ const imageLoader = ({ src, width, quality }) => {
   const isGitHubPages =
     typeof window !== "undefined" &&
     (window.location.hostname.includes("github.io") ||
-      window.location.hostname.includes("brandspecial.github.io") ||
       window.location.hostname.includes("sagegallant.github.io"));
 
   // Determine the base path for GitHub Pages - ensure correct case
@@ -31,21 +30,27 @@ const imageLoader = ({ src, width, quality }) => {
     return src;
   }
 
-  // Special handling for images directory to ensure correct case sensitivity
-  // This is important for GitHub Pages which is case-sensitive
+  // Create the final source path
   let finalSrc;
 
-  if (normalizedSrc.toLowerCase().includes("images/")) {
-    // Extract the filename part (after the last /)
-    const pathParts = normalizedSrc.split("/");
-    const fileName = pathParts[pathParts.length - 1].toLowerCase(); // Force lowercase filenames
-
-    // For images folder path, ensure 'images' is all lowercase
-    // and ensure the filename is lowercase for case-sensitive systems
-    finalSrc = `${basePath}/images/${fileName}`;
+  // For GitHub Pages, always use a direct path to the image file from the repo root
+  if (isGitHubPages) {
+    // If it's an image file, use a direct path to /images/filename.ext
+    if (
+      normalizedSrc.includes("/images/") ||
+      normalizedSrc.startsWith("images/")
+    ) {
+      // Extract just the filename
+      const fileName = normalizedSrc.split("/").pop();
+      // Create a direct path to the image file
+      finalSrc = `${basePath}/images/${fileName}`;
+    } else {
+      // For other files, maintain the path structure
+      finalSrc = `${basePath}/${normalizedSrc}`;
+    }
   } else {
-    // For other paths, just append the normalized path to the base path
-    finalSrc = `${basePath}/${normalizedSrc}`;
+    // For local development, just use the normalized path
+    finalSrc = `/${normalizedSrc}`;
   }
 
   // Add sizing parameters if provided

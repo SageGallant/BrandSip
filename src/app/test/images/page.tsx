@@ -17,7 +17,8 @@ const ImageTestPage = () => {
     // Check if we're running on GitHub Pages
     const isGitHub =
       typeof window !== "undefined" &&
-      window.location.hostname.includes("github.io");
+      (window.location.hostname.includes("github.io") ||
+        window.location.hostname.includes("sagegallant.github.io"));
     setIsGitHubPages(isGitHub);
     setHostname(window.location.hostname || "");
     setBasePath(isGitHub ? "/BrandSip" : "");
@@ -25,22 +26,25 @@ const ImageTestPage = () => {
 
   // List of test images to try
   const testImages = [
-    { path: "/images/Hotel.png", description: "Hotel Image" },
-    { path: "/images/Dining.png", description: "Dining Image" },
-    { path: "/images/Cafe.png", description: "Cafe Image" },
-    { path: "/images/Heritage.png", description: "Heritage Image" },
+    { path: "/images/hotel.png", description: "Hotel Image (lowercase)" },
+    { path: "/images/dining.png", description: "Dining Image (lowercase)" },
+    { path: "/images/cafe.png", description: "Cafe Image (lowercase)" },
+    { path: "/images/heritage.png", description: "Heritage Image (lowercase)" },
     { path: "/images/lounge.png", description: "Lounge Image (lowercase)" },
-    { path: "/images/Custom.png", description: "Custom Image" },
+    { path: "/images/custom.png", description: "Custom Image (lowercase)" },
     { path: "/images/hero-bg.jpg", description: "Hero Background" },
   ];
 
   // Case sensitivity test images
   const caseSensitivityTests = [
-    { path: "/images/Hotel.png", description: "Original: /images/Hotel.png" },
-    { path: "/Images/Hotel.png", description: "Capital I: /Images/Hotel.png" },
-    { path: "/IMAGES/Hotel.png", description: "All caps: /IMAGES/Hotel.png" },
     { path: "/images/hotel.png", description: "Lowercase: /images/hotel.png" },
-    { path: "/images/HOTEL.png", description: "All caps: /images/HOTEL.png" },
+    { path: "/Images/hotel.png", description: "Capital I: /Images/hotel.png" },
+    { path: "/IMAGES/hotel.png", description: "All caps: /IMAGES/hotel.png" },
+    {
+      path: "/images/HOTEL.png",
+      description: "Uppercase filename: /images/HOTEL.png",
+    },
+    { path: "/images/Hotel.png", description: "Mixed case: /images/Hotel.png" },
   ];
 
   // Intentional error test cases

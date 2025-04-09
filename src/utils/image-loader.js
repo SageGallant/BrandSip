@@ -35,6 +35,28 @@ export default function imageLoader({ src, width, quality }) {
     normalizedSrc = "/" + normalizedSrc;
   }
 
+  let finalPath;
+
+  // For GitHub Pages, handle image paths directly
+  if (
+    typeof window !== "undefined" &&
+    window.location.hostname.includes("github.io")
+  ) {
+    // Extract just the filename for images folder paths
+    if (
+      normalizedSrc.includes("/images/") ||
+      normalizedSrc.startsWith("/images/")
+    ) {
+      const fileName = normalizedSrc.split("/").pop();
+      finalPath = `${basePath}/images/${fileName}`;
+    } else {
+      finalPath = `${basePath}${normalizedSrc}`;
+    }
+  } else {
+    // For local development
+    finalPath = `${basePath}${normalizedSrc}`;
+  }
+
   // Include width and quality if provided
   const params = [];
   if (width) {
@@ -46,7 +68,7 @@ export default function imageLoader({ src, width, quality }) {
 
   const queryString = params.length ? `?${params.join("&")}` : "";
 
-  const finalPath = `${basePath}${normalizedSrc}${queryString}`;
+  finalPath = `${finalPath}${queryString}`;
 
   // Log to debug
   console.log(`Image request: Original src=${src}, Resolved path=${finalPath}`);
