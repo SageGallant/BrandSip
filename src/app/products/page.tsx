@@ -5,19 +5,10 @@ import Link from "next/link";
 import Image from "next/image";
 import PageLayout from "../../components/PageLayout";
 import { motion } from "framer-motion";
-import Head from "next/head";
 
 const ProductsPage = () => {
   return (
     <PageLayout>
-      <Head>
-        <title>Products | BrandSip - Custom Branded Water Bottles</title>
-        <meta
-          name="description"
-          content="Explore our range of premium custom-branded water bottles for your hospitality business."
-        />
-      </Head>
-
       {/* Hero Section */}
       <section className="bg-primary py-16 md:py-24">
         <div className="container-wide text-center">
@@ -65,7 +56,7 @@ const ProductsPage = () => {
             >
               <div className="relative h-64">
                 <Image
-                  src="https://images.unsplash.com/photo-1600423115367-87ea7661688f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1050&q=80"
+                  src="/images/Hotel.png"
                   alt="Luxury Hotel Design"
                   fill
                   className="object-cover"
@@ -92,7 +83,7 @@ const ProductsPage = () => {
             >
               <div className="relative h-64">
                 <Image
-                  src="https://images.unsplash.com/photo-1589365252845-092198ba5474?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1067&q=80"
+                  src="/images/Dining.png"
                   alt="Fine Dining Edition"
                   fill
                   className="object-cover"
@@ -119,7 +110,7 @@ const ProductsPage = () => {
             >
               <div className="relative h-64">
                 <Image
-                  src="https://images.unsplash.com/photo-1603362305836-8cefb3512bd5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1035&q=80"
+                  src="/images/Heritage.png"
                   alt="Heritage Collection"
                   fill
                   className="object-cover"
@@ -146,7 +137,7 @@ const ProductsPage = () => {
             >
               <div className="relative h-64">
                 <Image
-                  src="https://images.unsplash.com/photo-1567697692142-ae2ef0e40f15?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1035&q=80"
+                  src="/images/lounge.png"
                   alt="Premium Bar Series"
                   fill
                   className="object-cover"
@@ -172,7 +163,7 @@ const ProductsPage = () => {
             >
               <div className="relative h-64">
                 <Image
-                  src="https://images.unsplash.com/photo-1581541234269-3a3cb8f74339?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1097&q=80"
+                  src="/images/Cafe.png"
                   alt="Café Collection"
                   fill
                   className="object-cover"
@@ -198,7 +189,7 @@ const ProductsPage = () => {
             >
               <div className="relative h-64">
                 <Image
-                  src="https://images.unsplash.com/photo-1616450894316-6237aaa095c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1080&q=80"
+                  src="/images/Custom.png"
                   alt="Custom Creation"
                   fill
                   className="object-cover"
