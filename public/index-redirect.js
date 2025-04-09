@@ -22,7 +22,7 @@
   var p = new URLSearchParams(window.location.search).get("p");
   if (p) {
     // When coming from the 404.html page
-    var basePath = "/brandsip"; // Must match your repo name
+    var basePath = "/BrandSip"; // Must match your repo name
     var path = p.startsWith("/") ? p : "/" + p;
     history.replaceState(null, null, basePath + path);
   }
