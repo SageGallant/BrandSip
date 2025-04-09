@@ -34,9 +34,15 @@ export default function RootLayout({
         <script
           dangerouslySetInnerHTML={{
             __html: `
+              // Determine base path reliably
+              let basePath = '';
+              if (window.location.hostname.includes('github.io')) {
+                basePath = '/brandsip';
+              }
+              
               window.process = {
                 env: {
-                  NEXT_PUBLIC_BASE_PATH: "${basePath}"
+                  NEXT_PUBLIC_BASE_PATH: basePath
                 }
               };
               
@@ -44,12 +50,17 @@ export default function RootLayout({
               if (window.location.search && window.location.search.includes('p=')) {
                 sessionStorage.redirect = window.location.href;
               }
+              
+              // Debug info to console
+              console.log('Base path:', basePath);
+              console.log('Current path:', window.location.pathname);
             `,
           }}
         />
       </head>
       <body className="font-inter text-primary bg-white">
         {children}
+        <Script src={`${basePath}/debug.js`} strategy="afterInteractive" />
         <Script
           src={`${basePath}/index-redirect.js`}
           strategy="beforeInteractive"

@@ -5,7 +5,20 @@ export default function imageLoader({ src, width, quality }) {
   }
 
   // For local images, prepend the asset prefix for GitHub Pages
-  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+  let basePath = "";
+
+  // Check if we're in the browser
+  if (typeof window !== "undefined") {
+    // For GitHub Pages deployment
+    if (window.location.hostname.includes("github.io")) {
+      basePath = "/brandsip";
+    } else {
+      basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+    }
+  } else {
+    basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+  }
+
   const normalizedSrc = src.startsWith("/") ? src.slice(1) : src;
 
   // Include width and quality if provided
@@ -18,6 +31,9 @@ export default function imageLoader({ src, width, quality }) {
   }
 
   const queryString = params.length ? `?${params.join("&")}` : "";
+
+  // Log to debug
+  console.log(`Resolving image: ${basePath}/${normalizedSrc}${queryString}`);
 
   return `${basePath}/${normalizedSrc}${queryString}`;
 }

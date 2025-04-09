@@ -1,5 +1,12 @@
 // Helper function to get the base path used for links, assets, etc.
 export function getBasePath() {
+  // Check if we're in the browser and use window.location to determine if we're on GitHub Pages
+  if (typeof window !== "undefined") {
+    // For GitHub Pages deployment
+    if (window.location.hostname.includes("github.io")) {
+      return "/brandsip";
+    }
+  }
   return process.env.NEXT_PUBLIC_BASE_PATH || "";
 }
 
