@@ -19,25 +19,42 @@ export const useTheme = () => useContext(ThemeContext);
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [theme, setTheme] = useState<Theme>(() => {
-    if (typeof window !== "undefined") {
-      const savedTheme = localStorage.getItem("theme") as Theme;
-      if (savedTheme) return savedTheme;
+  // Use a simpler initial state for server-side rendering
+  const [theme, setTheme] = useState<Theme>("light");
+  // Use a state to track if we've initialized from client storage
+  const [isInitialized, setIsInitialized] = useState(false);
 
+  // Effect for initializing theme from localStorage
+  useEffect(() => {
+    // Skip if already initialized
+    if (isInitialized) return;
+
+    const savedTheme = localStorage.getItem("theme") as Theme;
+
+    if (savedTheme) {
+      setTheme(savedTheme);
+    } else {
       const prefersDark = window.matchMedia(
         "(prefers-color-scheme: dark)"
       ).matches;
-      return prefersDark ? "dark" : "light";
+      setTheme(prefersDark ? "dark" : "light");
     }
-    return "light";
-  });
 
+    setIsInitialized(true);
+  }, [isInitialized]);
+
+  // Effect for applying theme
   useEffect(() => {
+    if (!isInitialized && typeof window === "undefined") return;
+
     const root = window.document.documentElement;
     root.classList.remove("light", "dark");
     root.classList.add(theme);
-    localStorage.setItem("theme", theme);
-  }, [theme]);
+
+    if (isInitialized) {
+      localStorage.setItem("theme", theme);
+    }
+  }, [theme, isInitialized]);
 
   const toggleTheme = () => {
     setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));

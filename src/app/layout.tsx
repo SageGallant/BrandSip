@@ -8,6 +8,14 @@ export const metadata: Metadata = {
     "Premium custom-branded water bottles for hotels, restaurants, and bars. Enhance your brand experience with every sip.",
   keywords:
     "custom water bottles, branded water, hospitality branding, hotel water bottles, restaurant branding",
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png" }],
+  },
 };
 
 export default function RootLayout({
@@ -28,25 +36,26 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lato:wght@400;700&family=Montserrat:wght@500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
           rel="stylesheet"
         />
-        {/* Debug script for detecting paths on GitHub Pages */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              console.log('Current URL:', window.location.href);
-              console.log('Pathname:', window.location.pathname);
-              console.log('Hostname:', window.location.hostname);
-              
-              // Check if navigation needs to be fixed for GitHub Pages
-              if (window.location.hostname.includes('github.io')) {
-                console.log('Running on GitHub Pages');
-              }
-            `,
-          }}
-        />
       </head>
       <body className="font-inter text-primary bg-white">
         {children}
-        {/* Add a simple troubleshooting element */}
+        {/* Debug info script with better hydration handling */}
+        <Script id="debug-info-script" strategy="afterInteractive">
+          {`
+            console.log('Current URL:', window.location.href);
+            console.log('Pathname:', window.location.pathname);
+            console.log('Hostname:', window.location.hostname);
+            
+            // Check if navigation needs to be fixed for GitHub Pages
+            if (window.location.hostname.includes('github.io')) {
+              console.log('Running on GitHub Pages');
+            }
+
+            // Show debug info in a safer way
+            document.getElementById('debug-info').style.display = 'block';
+            document.getElementById('path-info').innerText = 'Path: ' + window.location.pathname;
+          `}
+        </Script>
         <div
           id="debug-info"
           style={{
@@ -62,14 +71,6 @@ export default function RootLayout({
         >
           <p>Debug Info</p>
           <p id="path-info"></p>
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `
-            document.getElementById('debug-info').style.display = 'block';
-            document.getElementById('path-info').innerText = 'Path: ' + window.location.pathname;
-          `,
-            }}
-          />
         </div>
       </body>
     </html>
