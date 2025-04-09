@@ -27,18 +27,21 @@ jobs:
           node-version: "20"
           cache: "npm"
 
-      - name: Install dependencies
-        run: npm ci
+      - name: Install dependencies (with lock file regeneration)
+        run: npm install
+
+      - name: Create output directory if it doesn't exist
+        run: mkdir -p ./out
 
       - name: Create .nojekyll file
-        run: touch ./out/.nojekyll || mkdir -p ./out && touch ./out/.nojekyll
+        run: touch ./out/.nojekyll
 
       - name: Build
         run: npm run build
         env:
           NODE_ENV: production
 
-      - name: Create .nojekyll file
+      - name: Create .nojekyll file (ensure it exists after build)
         run: touch ./out/.nojekyll
 
       - name: Setup Pages

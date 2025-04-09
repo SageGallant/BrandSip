@@ -11,7 +11,9 @@
     "deploy": "next build"
   },
   "dependencies": {
-    "framer-motion": "^10.16.4",
+    "@emotion/is-prop-valid": "0.8.8",
+    "@emotion/memoize": "0.7.4",
+    "framer-motion": "10.16.4",
     "next": "^14.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
