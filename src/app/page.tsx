@@ -5,7 +5,6 @@ import Link from "next/link";
 import Image from "next/image";
 import PageLayout from "../components/PageLayout";
 import { motion, useAnimation, useScroll, useTransform } from "framer-motion";
-import Head from "next/head";
 
 export default function Home() {
   const controls = useAnimation();
@@ -23,14 +22,6 @@ export default function Home() {
 
   return (
     <PageLayout>
-      <Head>
-        <title>BrandSip - Custom Branded Water Bottles for Hospitality</title>
-        <meta
-          name="description"
-          content="Premium custom-branded water bottles for the hospitality industry. Enhance your guest experience with every sip."
-        />
-      </Head>
-
       {/* Hero Section with Parallax Effect */}
       <section className="relative h-screen flex items-center overflow-hidden">
         {/* Background Image with real image */}
@@ -122,7 +113,7 @@ export default function Home() {
                   "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
               }}
             >
-              {/* Decorative Element */}
+              {/* Decorative Element - Fixed Position */}
               <div className="absolute -top-3 -left-3 w-8 h-8 bg-accent rounded-full flex items-center justify-center text-white text-xs font-bold">
                 01
               </div>
@@ -233,7 +224,7 @@ export default function Home() {
 
             {/* Solution */}
             <motion.div
-              className="bg-white p-8 rounded-lg shadow-lg"
+              className="bg-white p-8 rounded-lg shadow-lg relative"
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -243,7 +234,7 @@ export default function Home() {
                   "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
               }}
             >
-              {/* Decorative Element */}
+              {/* Decorative Element - Fixed Position */}
               <div className="absolute -top-3 -left-3 w-8 h-8 bg-gold rounded-full flex items-center justify-center text-white text-xs font-bold">
                 02
               </div>
@@ -839,7 +830,7 @@ export default function Home() {
               className="relative"
             >
               <Image
-                src="https://images.unsplash.com/photo-1608270586620-248524c67de9?q=80&w=400"
+                src="/images/footer%20inset.jpg"
                 alt="Premium water bottle"
                 width={100}
                 height={300}
