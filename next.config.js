@@ -1,8 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: "export",
+  // GitHub Pages specific configuration
+  basePath: process.env.NODE_ENV === "production" ? "/brandsip" : "",
+  assetPrefix: process.env.NODE_ENV === "production" ? "/brandsip/" : "",
+  // Images configuration - required for static export
   images: {
-    domains: ["images.unsplash.com", "source.unsplash.com"],
-    formats: ["image/avif", "image/webp"],
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: "https",
@@ -13,11 +17,10 @@ const nextConfig = {
         hostname: "source.unsplash.com",
       },
     ],
-    unoptimized: true,
+    formats: ["image/avif", "image/webp"],
   },
-  output: "export",
-  basePath: process.env.NODE_ENV === "production" ? "/brandsip" : "",
-  assetPrefix: process.env.NODE_ENV === "production" ? "/brandsip/" : "",
+  // Disable trailing slashes for better compatibility
+  trailingSlash: false,
 };
 
 module.exports = nextConfig;
