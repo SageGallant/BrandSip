@@ -1,0 +1,6 @@
+This is a placeholder file that will be replaced with an actual screenshot of the website.
+
+To add a screenshot:
+1. Take a screenshot of your live site
+2. Save it as "homepage.png" in this directory
+3. Delete this text file 

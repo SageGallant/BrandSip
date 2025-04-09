@@ -1,6 +1,82 @@
-# BrandSip Website
+# BrandSip
 
-A modern, responsive website built with Next.js and Tailwind CSS.
+A modern, responsive website for BrandSip - a custom branded water bottle provider for the hospitality industry. Built with Next.js and Tailwind CSS.
+
+## 🚀 Live Demo
+
+Visit the live site: [BrandSip](https://sagegallant.github.io/brandsip/)
+
+## 📋 Features
+
+- Responsive design for all devices
+- Modern UI with smooth animations
+- Static site generation for fast loading
+- Optimized for SEO
+
+## 🛠️ Technologies Used
+
+- **Next.js** - React framework for static site generation
+- **Tailwind CSS** - Utility-first CSS framework
+- **Framer Motion** - Animation library
+- **TypeScript** - Static type checking
+
+## 📷 Screenshots
+
+![BrandSip Website](/screenshots/homepage.png)
+
+## 📝 Project Structure
+
+```
+/src
+  /app - Next.js app router pages
+  /components - Reusable UI components
+  /styles - Global styles and Tailwind config
+  /utils - Utility functions
+  /hooks - Custom React hooks
+  /contexts - React context providers
+/public - Static assets
+```
+
+## 🔧 Development Setup
+
+### Prerequisites
+
+- Node.js (v14+)
+- npm or yarn
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/SageGallant/brandsip.git
+
+# Navigate to the project directory
+cd brandsip
+
+# Install dependencies
+npm install
+
+# Start the development server
+npm run dev
+```
+
+### Building for Production
+
+```bash
+# Create a production build
+npm run build
+
+# Export as static site
+npm run export
+```
+
+## 🌐 Deployment
+
+This website is configured for GitHub Pages deployment. The GitHub Actions workflow automatically builds and deploys the site whenever changes are pushed to the main branch.
+
+## 📄 License
+
+[MIT License](LICENSE)
 
 ## Deployment to GitHub Pages
 
