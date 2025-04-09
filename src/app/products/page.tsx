@@ -59,7 +59,8 @@ const ProductsPage = () => {
                   src="/images/Hotel.png"
                   alt="Luxury Hotel Design"
                   fill
-                  className="object-cover"
+                  className="object-contain p-2"
+                  sizes="(max-width: 768px) 100vw, 33vw"
                 />
               </div>
               <div className="p-4">
@@ -86,7 +87,8 @@ const ProductsPage = () => {
                   src="/images/Dining.png"
                   alt="Fine Dining Edition"
                   fill
-                  className="object-cover"
+                  className="object-contain p-2"
+                  sizes="(max-width: 768px) 100vw, 33vw"
                 />
               </div>
               <div className="p-4">
@@ -113,7 +115,8 @@ const ProductsPage = () => {
                   src="/images/Heritage.png"
                   alt="Heritage Collection"
                   fill
-                  className="object-cover"
+                  className="object-contain p-2"
+                  sizes="(max-width: 768px) 100vw, 33vw"
                 />
               </div>
               <div className="p-4">
@@ -140,7 +143,8 @@ const ProductsPage = () => {
                   src="/images/lounge.png"
                   alt="Premium Bar Series"
                   fill
-                  className="object-cover"
+                  className="object-contain p-2"
+                  sizes="(max-width: 768px) 100vw, 33vw"
                 />
               </div>
               <div className="p-4">
@@ -166,7 +170,8 @@ const ProductsPage = () => {
                   src="/images/Cafe.png"
                   alt="Café Collection"
                   fill
-                  className="object-cover"
+                  className="object-contain p-2"
+                  sizes="(max-width: 768px) 100vw, 33vw"
                 />
               </div>
               <div className="p-4">
@@ -192,7 +197,8 @@ const ProductsPage = () => {
                   src="/images/Custom.png"
                   alt="Custom Creation"
                   fill
-                  className="object-cover"
+                  className="object-contain p-2"
+                  sizes="(max-width: 768px) 100vw, 33vw"
                 />
               </div>
               <div className="p-4">
@@ -685,7 +691,8 @@ const ProductsPage = () => {
                   src="https://images.unsplash.com/photo-1626315869436-d6781ba69d6e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80"
                   alt="Custom Water Bottle Design Preview"
                   fill
-                  className="object-cover"
+                  className="object-contain"
+                  sizes="(max-width: 768px) 100vw, 50vw"
                 />
               </div>
               <p className="text-center text-gray-600 italic">
