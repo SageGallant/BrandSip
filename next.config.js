@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const isGithubPages = process.env.NODE_ENV === "production";
-const repoName = "brandsip"; // GitHub repository name
+const repoName = "BrandSip"; // GitHub repository name
 
 const nextConfig = {
   output: "export",
