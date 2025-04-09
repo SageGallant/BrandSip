@@ -811,7 +811,7 @@ export default function Home() {
 
           {/* Floating Bottle Animation */}
           <motion.div
-            className="hidden md:block absolute right-[10%] bottom-0"
+            className="hidden md:block absolute right-[5%] bottom-0"
             initial={{ opacity: 0, y: 100 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
