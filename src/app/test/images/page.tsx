@@ -10,6 +10,8 @@ const ImageTestPage = () => {
   const [isGitHubPages, setIsGitHubPages] = useState(false);
   const [hostname, setHostname] = useState("");
   const [basePath, setBasePath] = useState("");
+  const [errorCount, setErrorCount] = useState(0);
+  const [successCount, setSuccessCount] = useState(0);
 
   useEffect(() => {
     // Check if we're running on GitHub Pages
@@ -27,14 +29,44 @@ const ImageTestPage = () => {
     { path: "/images/Dining.png", description: "Dining Image" },
     { path: "/images/Cafe.png", description: "Cafe Image" },
     { path: "/images/Heritage.png", description: "Heritage Image" },
-    { path: "/images/lounge.png", description: "Lounge Image" },
+    { path: "/images/lounge.png", description: "Lounge Image (lowercase)" },
     { path: "/images/Custom.png", description: "Custom Image" },
+    { path: "/images/hero-bg.jpg", description: "Hero Background" },
   ];
+
+  // Case sensitivity test images
+  const caseSensitivityTests = [
+    { path: "/images/Hotel.png", description: "Original: /images/Hotel.png" },
+    { path: "/Images/Hotel.png", description: "Capital I: /Images/Hotel.png" },
+    { path: "/IMAGES/Hotel.png", description: "All caps: /IMAGES/Hotel.png" },
+    { path: "/images/hotel.png", description: "Lowercase: /images/hotel.png" },
+    { path: "/images/HOTEL.png", description: "All caps: /images/HOTEL.png" },
+  ];
+
+  // Intentional error test cases
+  const errorTestImages = [
+    { path: "/images/missing.png", description: "Non-existent image" },
+    { path: "/images/Hotel.PNG", description: "Wrong extension case" },
+    { path: "/images/wrong-path.png", description: "Wrong path" },
+  ];
+
+  const handleImageLoad = () => {
+    setSuccessCount((prev) => prev + 1);
+  };
+
+  const handleImageError = () => {
+    setErrorCount((prev) => prev + 1);
+  };
 
   return (
     <PageLayout>
       <div className="container-wide py-12">
         <h1 className="text-3xl font-bold mb-8">Image Loading Test Page</h1>
+        <div className="bg-green-100 p-3 rounded mb-4">
+          <p className="font-medium">
+            Success: {successCount} | Errors: {errorCount}
+          </p>
+        </div>
 
         {/* Environment Information */}
         <div className="bg-white p-6 rounded-lg shadow-md mb-8">
@@ -56,11 +88,15 @@ const ImageTestPage = () => {
                 <strong>Full URL:</strong>{" "}
                 {typeof window !== "undefined" ? window.location.href : ""}
               </p>
+              <p className="mt-2 text-sm text-gray-500">
+                Note: This page tests various image loading scenarios to help
+                identify and debug potential issues with image paths.
+              </p>
             </div>
           </div>
         </div>
 
-        {/* Image Test Section */}
+        {/* Standard Image Test Section */}
         <h2 className="text-xl font-semibold mb-4">
           Testing ImageWithBasePath Component
         </h2>
@@ -76,6 +112,51 @@ const ImageTestPage = () => {
                   fill
                   className="object-contain"
                   sizes="(max-width: 768px) 100vw, 33vw"
+                  onError={handleImageError}
+                  onLoad={handleImageLoad}
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Case Sensitivity Tests */}
+        <h2 className="text-xl font-semibold mb-4">Case Sensitivity Tests</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+          {caseSensitivityTests.map((img, index) => (
+            <div key={index} className="bg-white p-4 rounded-lg shadow-md">
+              <h3 className="font-semibold mb-2">{img.description}</h3>
+              <div className="relative h-48 overflow-hidden rounded border bg-gray-50">
+                <ImageWithBasePath
+                  src={img.path}
+                  alt={img.description}
+                  fill
+                  className="object-contain"
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  onError={handleImageError}
+                  onLoad={handleImageLoad}
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Error Tests */}
+        <h2 className="text-xl font-semibold mb-4">Error Handling Tests</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+          {errorTestImages.map((img, index) => (
+            <div key={index} className="bg-white p-4 rounded-lg shadow-md">
+              <h3 className="font-semibold mb-2">{img.description}</h3>
+              <p className="text-sm text-gray-500 mb-2">Path: {img.path}</p>
+              <div className="relative h-48 overflow-hidden rounded border bg-gray-50">
+                <ImageWithBasePath
+                  src={img.path}
+                  alt={img.description}
+                  fill
+                  className="object-contain"
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  onError={handleImageError}
+                  onLoad={handleImageLoad}
                 />
               </div>
             </div>
@@ -98,6 +179,8 @@ const ImageTestPage = () => {
                   fill
                   className="object-contain"
                   sizes="(max-width: 768px) 100vw, 33vw"
+                  onError={handleImageError}
+                  onLoad={handleImageLoad}
                 />
               </div>
             </div>
@@ -117,6 +200,8 @@ const ImageTestPage = () => {
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 50vw"
+                onError={handleImageError}
+                onLoad={handleImageLoad}
               />
             </div>
           </div>
@@ -130,6 +215,8 @@ const ImageTestPage = () => {
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 50vw"
+                onError={handleImageError}
+                onLoad={handleImageLoad}
               />
             </div>
           </div>
@@ -137,8 +224,11 @@ const ImageTestPage = () => {
 
         {/* Navigation */}
         <div className="mt-8 flex justify-center">
-          <Link href="/" className="text-primary hover:underline">
+          <Link href="/" className="text-primary hover:underline mr-4">
             Back to Home
+          </Link>
+          <Link href="/products" className="text-primary hover:underline">
+            View Products
           </Link>
         </div>
       </div>

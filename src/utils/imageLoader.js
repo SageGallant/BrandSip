@@ -1,6 +1,7 @@
 /**
  * Custom image loader for Next.js Image component
  * Handles GitHub Pages deployment by adding the repo name as a base path
+ * and manages case sensitivity issues for image paths
  */
 const imageLoader = ({ src, width, quality }) => {
   // Handle remote images (already have full URLs)
@@ -29,28 +30,22 @@ const imageLoader = ({ src, width, quality }) => {
     return src;
   }
 
-  // Handle case sensitivity issues (convert to lowercase for comparison only)
-  if (isGitHubPages && normalizedSrc.toLowerCase().startsWith("images/")) {
-    // Ensure the 'images' folder is always lowercase in the path
-    const finalSrc = `${basePath}/images/${normalizedSrc.substring(7)}`;
+  // Special handling for images directory to ensure correct case sensitivity
+  // This is important for GitHub Pages which is case-sensitive
+  let finalSrc;
 
-    // Add sizing parameters if provided
-    const params = [];
-    if (width) {
-      params.push(`w=${width}`);
-    }
-    if (quality) {
-      params.push(`q=${quality || 75}`);
-    }
+  if (normalizedSrc.toLowerCase().startsWith("images/")) {
+    // Extract the filename part (after the last /)
+    const pathParts = normalizedSrc.split("/");
+    const fileName = pathParts[pathParts.length - 1];
 
-    // Construct the query string if there are parameters
-    const queryString = params.length ? `?${params.join("&")}` : "";
-
-    return `${finalSrc}${queryString}`;
+    // For images folder path, ensure 'images' is all lowercase
+    // but preserve the exact case of the filename
+    finalSrc = `${basePath}/images/${fileName}`;
+  } else {
+    // For other paths, just append the normalized path to the base path
+    finalSrc = `${basePath}/${normalizedSrc}`;
   }
-
-  // Construct the final URL with the base path
-  const finalSrc = `${basePath}/${normalizedSrc}`;
 
   // Add sizing parameters if provided
   const params = [];
