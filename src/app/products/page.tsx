@@ -6,6 +6,50 @@ import PageLayout from "../../components/PageLayout";
 import { motion } from "framer-motion";
 import ImageWithBasePath from "../../components/ImageWithBasePath";
 
+// Product image data for easier maintenance
+const productImages = [
+  {
+    src: "/images/Hotel.png",
+    alt: "Luxury Hotel Design",
+    title: "Luxury Hotel Design",
+    description:
+      "Elegant, minimalist design perfect for premium hotels and resorts.",
+  },
+  {
+    src: "/images/Dining.png",
+    alt: "Fine Dining Edition",
+    title: "Fine Dining Edition",
+    description:
+      "Sophisticated design that complements your restaurant's aesthetic.",
+  },
+  {
+    src: "/images/Heritage.png",
+    alt: "Heritage Collection",
+    title: "Heritage Collection",
+    description:
+      "Traditional motifs blended with modern design for heritage properties.",
+  },
+  {
+    src: "/images/lounge.png",
+    alt: "Premium Bar Series",
+    title: "Premium Bar Series",
+    description: "Sleek, modern designs perfect for upscale bars and lounges.",
+  },
+  {
+    src: "/images/Cafe.png",
+    alt: "Café Collection",
+    title: "Café Collection",
+    description: "Vibrant, eye-catching designs for cafés and casual dining.",
+  },
+  {
+    src: "/images/Custom.png",
+    alt: "Custom Creation",
+    title: "Custom Creation",
+    description:
+      "Fully customized bottles tailored to your unique brand requirements.",
+  },
+];
+
 const ProductsPage = () => {
   return (
     <PageLayout>
@@ -46,180 +90,49 @@ const ProductsPage = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Product Image 1 */}
-            <motion.div
-              className="rounded-lg overflow-hidden shadow-lg"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-            >
-              <div className="relative h-64 bg-white flex items-center justify-center">
-                <ImageWithBasePath
-                  src="/images/Hotel.png"
-                  alt="Luxury Hotel Design"
-                  fill
-                  className="object-cover hover:scale-105 transition-transform duration-300"
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                  style={{ objectPosition: "center center" }}
-                />
-              </div>
-              <div className="p-4">
-                <h3 className="font-montserrat font-semibold mb-2">
-                  Luxury Hotel Design
-                </h3>
-                <p className="text-gray-600 text-sm">
-                  Elegant, minimalist design perfect for premium hotels and
-                  resorts.
-                </p>
-              </div>
-            </motion.div>
-
-            {/* Product Image 2 */}
-            <motion.div
-              className="rounded-lg overflow-hidden shadow-lg"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-            >
-              <div className="relative h-64 bg-white flex items-center justify-center">
-                <ImageWithBasePath
-                  src="/images/Dining.png"
-                  alt="Fine Dining Edition"
-                  fill
-                  className="object-cover hover:scale-105 transition-transform duration-300"
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                  style={{ objectPosition: "center center" }}
-                />
-              </div>
-              <div className="p-4">
-                <h3 className="font-montserrat font-semibold mb-2">
-                  Fine Dining Edition
-                </h3>
-                <p className="text-gray-600 text-sm">
-                  Sophisticated design that complements your restaurant's
-                  aesthetic.
-                </p>
-              </div>
-            </motion.div>
-
-            {/* Product Image 3 */}
-            <motion.div
-              className="rounded-lg overflow-hidden shadow-lg"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            >
-              <div className="relative h-64 bg-white flex items-center justify-center">
-                <ImageWithBasePath
-                  src="/images/Heritage.png"
-                  alt="Heritage Collection"
-                  fill
-                  className="object-cover hover:scale-105 transition-transform duration-300"
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                  style={{ objectPosition: "center center" }}
-                />
-              </div>
-              <div className="p-4">
-                <h3 className="font-montserrat font-semibold mb-2">
-                  Heritage Collection
-                </h3>
-                <p className="text-gray-600 text-sm">
-                  Traditional motifs blended with modern design for heritage
-                  properties.
-                </p>
-              </div>
-            </motion.div>
-
-            {/* Product Image 4 */}
-            <motion.div
-              className="rounded-lg overflow-hidden shadow-lg"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-            >
-              <div className="relative h-64 bg-white flex items-center justify-center">
-                <ImageWithBasePath
-                  src="/images/lounge.png"
-                  alt="Premium Bar Series"
-                  fill
-                  className="object-cover hover:scale-105 transition-transform duration-300"
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                  style={{ objectPosition: "center center" }}
-                />
-              </div>
-              <div className="p-4">
-                <h3 className="font-montserrat font-semibold mb-2">
-                  Premium Bar Series
-                </h3>
-                <p className="text-gray-600 text-sm">
-                  Sleek, modern designs perfect for upscale bars and lounges.
-                </p>
-              </div>
-            </motion.div>
-
-            {/* Product Image 5 */}
-            <motion.div
-              className="rounded-lg overflow-hidden shadow-lg"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-            >
-              <div className="relative h-64 bg-white flex items-center justify-center">
-                <ImageWithBasePath
-                  src="/images/Cafe.png"
-                  alt="Café Collection"
-                  fill
-                  className="object-cover hover:scale-105 transition-transform duration-300"
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                  style={{ objectPosition: "center center" }}
-                />
-              </div>
-              <div className="p-4">
-                <h3 className="font-montserrat font-semibold mb-2">
-                  Café Collection
-                </h3>
-                <p className="text-gray-600 text-sm">
-                  Vibrant, eye-catching designs for cafés and casual dining.
-                </p>
-              </div>
-            </motion.div>
-
-            {/* Product Image 6 */}
-            <motion.div
-              className="rounded-lg overflow-hidden shadow-lg"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.5 }}
-            >
-              <div className="relative h-64 bg-white flex items-center justify-center">
-                <ImageWithBasePath
-                  src="/images/Custom.png"
-                  alt="Custom Creation"
-                  fill
-                  className="object-cover hover:scale-105 transition-transform duration-300"
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                  style={{ objectPosition: "center center" }}
-                />
-              </div>
-              <div className="p-4">
-                <h3 className="font-montserrat font-semibold mb-2">
-                  Custom Creation
-                </h3>
-                <p className="text-gray-600 text-sm">
-                  Fully customized bottles tailored to your unique brand
-                  requirements.
-                </p>
-              </div>
-            </motion.div>
+            {productImages.map((product, index) => (
+              <motion.div
+                key={index}
+                className="rounded-lg overflow-hidden shadow-lg"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <div className="relative h-64 bg-white flex items-center justify-center">
+                  <ImageWithBasePath
+                    src={product.src}
+                    alt={product.alt}
+                    fill
+                    className="object-cover hover:scale-105 transition-transform duration-300"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    style={{ objectPosition: "center center" }}
+                    priority={index < 3} // Prioritize loading for the first 3 images
+                  />
+                </div>
+                <div className="p-4">
+                  <h3 className="font-montserrat font-semibold mb-2">
+                    {product.title}
+                  </h3>
+                  <p className="text-gray-600 text-sm">{product.description}</p>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
+
+      {/* Link to Image Test Page (for development/debugging) */}
+      {process.env.NODE_ENV !== "production" && (
+        <div className="container-wide text-center py-8">
+          <Link
+            href="/test/images"
+            className="inline-block px-6 py-3 bg-gray-200 rounded-lg hover:bg-gray-300"
+          >
+            Image Test Page
+          </Link>
+        </div>
+      )}
 
       {/* Specifications & Features */}
       <section className="section bg-light-gray">
