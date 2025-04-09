@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import PageLayout from "../components/PageLayout";
 import { motion, useAnimation, useScroll, useTransform } from "framer-motion";
+import ImageWithBasePath from "../components/ImageWithBasePath";
 
 export default function Home() {
   const controls = useAnimation();
@@ -829,7 +830,7 @@ export default function Home() {
               }}
               className="relative"
             >
-              <Image
+              <ImageWithBasePath
                 src="/images/footer%20inset.jpg"
                 alt="Premium water bottle"
                 width={100}

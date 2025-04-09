@@ -2,9 +2,9 @@
 
 import React from "react";
 import Link from "next/link";
-import Image from "next/image";
 import PageLayout from "../../components/PageLayout";
 import { motion } from "framer-motion";
+import ImageWithBasePath from "../../components/ImageWithBasePath";
 
 const ProductsPage = () => {
   return (
@@ -55,7 +55,7 @@ const ProductsPage = () => {
               transition={{ duration: 0.5 }}
             >
               <div className="relative h-64">
-                <Image
+                <ImageWithBasePath
                   src="/images/Hotel.png"
                   alt="Luxury Hotel Design"
                   fill
@@ -82,7 +82,7 @@ const ProductsPage = () => {
               transition={{ duration: 0.5, delay: 0.1 }}
             >
               <div className="relative h-64">
-                <Image
+                <ImageWithBasePath
                   src="/images/Dining.png"
                   alt="Fine Dining Edition"
                   fill
@@ -109,7 +109,7 @@ const ProductsPage = () => {
               transition={{ duration: 0.5, delay: 0.2 }}
             >
               <div className="relative h-64">
-                <Image
+                <ImageWithBasePath
                   src="/images/Heritage.png"
                   alt="Heritage Collection"
                   fill
@@ -136,7 +136,7 @@ const ProductsPage = () => {
               transition={{ duration: 0.5, delay: 0.3 }}
             >
               <div className="relative h-64">
-                <Image
+                <ImageWithBasePath
                   src="/images/lounge.png"
                   alt="Premium Bar Series"
                   fill
@@ -162,7 +162,7 @@ const ProductsPage = () => {
               transition={{ duration: 0.5, delay: 0.4 }}
             >
               <div className="relative h-64">
-                <Image
+                <ImageWithBasePath
                   src="/images/Cafe.png"
                   alt="Café Collection"
                   fill
@@ -188,7 +188,7 @@ const ProductsPage = () => {
               transition={{ duration: 0.5, delay: 0.5 }}
             >
               <div className="relative h-64">
-                <Image
+                <ImageWithBasePath
                   src="/images/Custom.png"
                   alt="Custom Creation"
                   fill
@@ -681,7 +681,7 @@ const ProductsPage = () => {
               transition={{ duration: 0.6 }}
             >
               <div className="h-64 relative rounded-lg mb-6 overflow-hidden">
-                <Image
+                <ImageWithBasePath
                   src="https://images.unsplash.com/photo-1626315869436-d6781ba69d6e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80"
                   alt="Custom Water Bottle Design Preview"
                   fill

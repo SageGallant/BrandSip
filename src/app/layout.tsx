@@ -10,11 +10,11 @@ export const metadata: Metadata = {
     "custom water bottles, branded water, hospitality branding, hotel water bottles, restaurant branding",
   icons: {
     icon: [
-      { url: "/favicon.ico" },
-      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
-      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "./favicon.ico" },
+      { url: "./favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "./favicon-32x32.png", sizes: "32x32", type: "image/png" },
     ],
-    apple: [{ url: "/apple-touch-icon.png" }],
+    apple: [{ url: "./apple-touch-icon.png" }],
   },
 };
 
@@ -49,6 +49,17 @@ export default function RootLayout({
             // Check if navigation needs to be fixed for GitHub Pages
             if (window.location.hostname.includes('github.io')) {
               console.log('Running on GitHub Pages');
+              
+              // Fix paths for favicon and other static assets
+              const basePath = '/BrandSip';
+              
+              // Update favicon links
+              document.querySelectorAll('link[rel="icon"], link[rel="apple-touch-icon"]').forEach(link => {
+                const href = link.getAttribute('href');
+                if (href && href.startsWith('./')) {
+                  link.setAttribute('href', basePath + href.substring(1));
+                }
+              });
             }
 
             // Show debug info in a safer way
