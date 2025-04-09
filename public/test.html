@@ -1,1 +1,132 @@
- 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Test Page</title>
+    <!-- Try with both relative and absolute paths -->
+    <link rel="stylesheet" href="/BrandSip/_next/static/css/0e62d13a19b04f95.css">
+    <!-- Add our custom CSS file with both relative and absolute paths -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/BrandSip/styles.css">
+    <style>
+        /* Basic styling for diagnostic elements */
+        .diagnostic {
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .test-box {
+            width: 200px;
+            height: 200px;
+            margin: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Test box that should work without the TailwindCSS styles */
+        .test-box-local {
+            background-color: #f0f0f0;
+            border: 2px solid #333;
+        }
+
+        /* Box that relies on TailwindCSS classes */
+        .tailwind-test {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="diagnostic">
+        <h1>CSS Loading Test</h1>
+        <p>This page tests if CSS is loading correctly on GitHub Pages.</p>
+
+        <h2>URL Information:</h2>
+        <pre id="url-info"></pre>
+
+        <h2>CSS Test:</h2>
+
+        <div class="test-box test-box-local">
+            This box uses local styles (should always work)
+        </div>
+
+        <div class="tailwind-test">
+            <h3>TailwindCSS Tests:</h3>
+            <div class="bg-primary text-white p-4 rounded-lg mb-4">
+                This should be a blue box with white text if TailwindCSS loaded
+            </div>
+
+            <div class="bg-accent text-white p-4 rounded-lg mb-4">
+                This should be a teal box with white text if TailwindCSS loaded
+            </div>
+
+            <div class="bg-gold text-white p-4 rounded-lg">
+                This should be a gold box with white text if TailwindCSS loaded
+            </div>
+        </div>
+
+        <h3>Custom CSS Tests:</h3>
+        <div class="primary-block">
+            This should be a blue box with white text if custom CSS loaded
+        </div>
+
+        <div class="accent-block">
+            This should be a teal box with white text if custom CSS loaded
+        </div>
+
+        <div class="gold-block">
+            This should be a gold box with white text if custom CSS loaded
+        </div>
+
+        <div style="margin-top: 20px;">
+            <a href="#" class="button button-primary">Primary Button</a>
+            <a href="#" class="button button-gold">Gold Button</a>
+        </div>
+    </div>
+
+    <script>
+        // Display URL information for debugging
+        const urlInfo = document.getElementById('url-info');
+        urlInfo.textContent = `
+        Current URL: ${window.location.href}
+        Pathname: ${window.location.pathname}
+        Hostname: ${window.location.hostname}
+        Protocol: ${window.location.protocol}
+        `;
+
+        // Check if CSS files exist
+        const cssLinks = document.querySelectorAll('link[rel="stylesheet"]');
+
+        cssLinks.forEach((link, index) => {
+            fetch(link.href)
+                .then(response => {
+                    if (response.ok) {
+                        urlInfo.textContent += `\nCSS file ${index + 1} (${link.href}) exists and is accessible!`;
+                    } else {
+                        urlInfo.textContent += `\nCSS file ${index + 1} (${link.href}) request failed with status: ${response.status}`;
+                    }
+                })
+                .catch(error => {
+                    urlInfo.textContent += `\nError fetching CSS file ${index + 1} (${link.href}): ${error.message}`;
+                });
+        });
+
+        // List all stylesheets
+        urlInfo.textContent += `\n\nAll stylesheets loaded by document:`;
+        for (let i = 0; i < document.styleSheets.length; i++) {
+            try {
+                const sheet = document.styleSheets[i];
+                urlInfo.textContent += `\n${i + 1}: ${sheet.href || 'inline style'}`;
+            } catch (e) {
+                urlInfo.textContent += `\n${i + 1}: Error accessing stylesheet: ${e.message}`;
+            }
+        }
+    </script>
+</body>
+
+</html>

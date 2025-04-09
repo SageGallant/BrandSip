@@ -1,0 +1,79 @@
+/* Custom diagnostic CSS file for GitHub Pages testing */
+
+:root {
+  --primary-color: #0d3b66;
+  --accent-color: #00b4d8;
+  --gold-color: #d4af37;
+  --light-gray: #f8f9fa;
+  --dark-header: #1a1a1a;
+  --text-color: #333;
+  --white: #fff;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Test color blocks */
+.primary-block {
+  background-color: var(--primary-color);
+  color: var(--white);
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.accent-block {
+  background-color: var(--accent-color);
+  color: var(--white);
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.gold-block {
+  background-color: var(--gold-color);
+  color: var(--white);
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.button-primary {
+  background-color: var(--primary-color);
+  color: var(--white);
+}
+
+.button-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.button-gold {
+  background-color: var(--gold-color);
+  color: var(--white);
+}
+
+.button-gold:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
