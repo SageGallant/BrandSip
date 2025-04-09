@@ -29,8 +29,121 @@ jobs:
           node-version: "20"
           cache: "npm"
 
-      - name: Install dependencies
-        run: npm install
+      - name: Install dependencies (including dev dependencies)
+        run: npm install --include=dev
+
+      - name: Create scripts directory
+        run: mkdir -p scripts
+
+      - name: Add Tailwind CSS checker script
+        run: |
+          cat > scripts/check-tailwind.js << 'EOF'
+          #!/usr/bin/env node
+
+          const fs = require('fs');
+          const path = require('path');
+          const { execSync } = require('child_process');
+
+          console.log('Tailwind CSS Installation Checker');
+          console.log('================================================\n');
+
+          // Check if package.json exists
+          console.log('Checking package.json...');
+          try {
+            const packageJsonPath = path.resolve(__dirname, '../package.json');
+            const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
+            
+            // Check tailwindcss in dependencies
+            const hasTailwindDev = packageJson.devDependencies && packageJson.devDependencies.tailwindcss;
+            const hasTailwindDep = packageJson.dependencies && packageJson.dependencies.tailwindcss;
+            
+            if (hasTailwindDev || hasTailwindDep) {
+              console.log('✓ Tailwind CSS is in package.json');
+              console.log(`  Version: ${hasTailwindDev || hasTailwindDep}`);
+            } else {
+              console.log('✗ Tailwind CSS is missing in package.json');
+              console.log('Installing Tailwind CSS...');
+              execSync('npm install tailwindcss postcss autoprefixer --save-dev', { stdio: 'inherit' });
+            }
+          } catch (error) {
+            console.error('Error checking package.json:', error.message);
+          }
+
+          // Check tailwind.config.js
+          console.log('\nChecking tailwind.config.js...');
+          try {
+            const tailwindConfigPath = path.resolve(__dirname, '../tailwind.config.js');
+            if (fs.existsSync(tailwindConfigPath)) {
+              console.log('✓ tailwind.config.js exists');
+              
+              // Print content
+              const tailwindConfig = fs.readFileSync(tailwindConfigPath, 'utf8');
+              console.log('\nContent of tailwind.config.js:');
+              console.log(tailwindConfig);
+            } else {
+              console.log('✗ tailwind.config.js is missing');
+              console.log('Creating a basic tailwind.config.js...');
+              
+              // Create a basic tailwind.config.js
+              const basicConfig = `/** @type {import('tailwindcss').Config} */
+          module.exports = {
+            content: [
+              "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+              "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+              "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+            ],
+            theme: {
+              extend: {},
+            },
+            plugins: [],
+          };
+          `;
+              fs.writeFileSync(tailwindConfigPath, basicConfig);
+              console.log('✓ Basic tailwind.config.js created');
+            }
+          } catch (error) {
+            console.error('Error checking tailwind.config.js:', error.message);
+          }
+
+          // Check postcss.config.js
+          console.log('\nChecking postcss.config.js...');
+          try {
+            const postcssConfigPath = path.resolve(__dirname, '../postcss.config.js');
+            if (fs.existsSync(postcssConfigPath)) {
+              console.log('✓ postcss.config.js exists');
+              
+              // Print content
+              const postcssConfig = fs.readFileSync(postcssConfigPath, 'utf8');
+              console.log('\nContent of postcss.config.js:');
+              console.log(postcssConfig);
+            } else {
+              console.log('✗ postcss.config.js is missing');
+              console.log('Creating a basic postcss.config.js...');
+              
+              // Create a basic postcss.config.js
+              const basicConfig = `module.exports = {
+            plugins: {
+              tailwindcss: {},
+              autoprefixer: {},
+            },
+          };
+          `;
+              fs.writeFileSync(postcssConfigPath, basicConfig);
+              console.log('✓ Basic postcss.config.js created');
+            }
+          } catch (error) {
+            console.error('Error checking postcss.config.js:', error.message);
+          }
+
+          console.log('\nTailwind CSS check completed!');
+          EOF
+          chmod +x scripts/check-tailwind.js
+
+      - name: Run Tailwind CSS checker
+        run: node scripts/check-tailwind.js
+
+      - name: Verify installations after check
+        run: npm list tailwindcss postcss autoprefixer
 
       - name: Build Next.js static output
         run: npm run build
