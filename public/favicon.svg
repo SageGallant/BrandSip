@@ -1,0 +1,11 @@
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bottleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0891b2;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#06b6d4;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="32" height="32" rx="6" fill="#ffffff" />
+  <path d="M16,3 L16,5 C16,5 14,5 14,7 L14,10 C14,10 11,12 11,15 L11,26 C11,28 13,29 16,29 C19,29 21,28 21,26 L21,15 C21,12 18,10 18,10 L18,7 C18,5 16,5 16,5 L16,3 Z" fill="url(#bottleGradient)"/>
+  <path d="M16,12 C18,12 19,13 19,14 L19,26 C19,27 18,27 16,27 C14,27 13,27 13,26 L13,14 C13,13 14,12 16,12 Z" fill="#ffffff" fill-opacity="0.3"/>
+</svg> 
